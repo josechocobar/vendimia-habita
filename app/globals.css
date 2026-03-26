@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors from Material Design 3 */
+  --color-on-surface-variant: #c4c9ac;
+  --color-tertiary: #ffffff;
+  --color-surface-container-lowest: #0e0e0e;
+  --color-on-tertiary-fixed: #0b1d29;
+  --color-surface-container-low: #1c1b1b;
+  --color-on-error: #690005;
+  --color-secondary: #c8c8b0;
+  --color-surface: #131313;
+  --color-on-primary-container: #556d00;
+  --color-background: #131313;
+  --color-surface-container-highest: #353534;
+  --color-secondary-container: #494a38;
+  --color-primary-container: #c3f400;
+  --color-primary: #ffffff;
+  --color-primary-fixed-dim: #abd600;
+  --color-outline: #8e9379;
+  --color-tertiary-fixed: #d2e5f5;
+  --color-on-tertiary-container: #556774;
+  --color-on-surface: #e5e2e1;
+  --color-primary-fixed: #c3f400;
+  --color-on-secondary-fixed: #1b1d0e;
+  --color-on-primary-fixed-variant: #3c4d00;
+  --color-error-container: #93000a;
+  --color-secondary-fixed-dim: #c8c8b0;
+  --color-on-secondary-container: #b9baa3;
+  --color-surface-variant: #353534;
+  --color-on-error-container: #ffdad6;
+  --color-on-secondary: #303221;
+  --color-surface-container-high: #2a2a2a;
+  --color-on-tertiary: #21323e;
+  --color-surface-dim: #131313;
+  --color-surface-container: #201f1f;
+  --color-inverse-surface: #e5e2e1;
+  --color-tertiary-container: #d2e5f5;
+  --color-on-primary-fixed: #161e00;
+  --color-surface-bright: #393939;
+  --color-outline-variant: #444933;
+  --color-inverse-on-surface: #313030;
+  --color-error: #ffb4ab;
+  --color-secondary-fixed: #e4e4cc;
+  --color-surface-tint: #abd600;
+  --color-on-secondary-fixed-variant: #474836;
+  --color-on-background: #e5e2e1;
+  --color-on-tertiary-fixed-variant: #374956;
+  --color-on-primary: #283500;
+  --color-tertiary-fixed-dim: #b6c9d8;
+  --color-inverse-primary: #506600;
+
+  /* Fonts */
+  --font-headline: var(--font-manrope);
+  --font-body: var(--font-inter);
+  --font-label: var(--font-inter);
+
+  /* Radius */
+  --radius-default: 1rem;
+  --radius-lg: 2rem;
+  --radius-xl: 3rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #131313;
+  --foreground: #e5e2e1;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.glass-nav {
+  background: rgba(19, 19, 19, 0.7);
+  backdrop-filter: blur(24px);
+}
+
+.text-glow {
+  text-shadow: 0 0 20px rgba(195, 244, 0, 0.3);
+}
+
+.dash-path {
+  stroke-dasharray: 8;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -1000;
+  }
 }
