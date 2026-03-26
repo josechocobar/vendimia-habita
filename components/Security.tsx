@@ -34,7 +34,7 @@ const Security = () => {
                                 </div>
                                 <div>
                                     <h4 className="text-white font-bold text-lg mb-1">Verificación de Identidad</h4>
-                                    <p className="text-secondary text-sm">Profesionales y empresas pasan por validaciones de identidad y antecedentes dentro de la red Habita para reducir el riesgo de estafas.</p>
+                                    <p className="text-secondary text-sm">Profesionales y empresas pasan por validaciones de identidad y antecedentes dentro de la red Vinality para reducir el riesgo de estafas.</p>
                                 </div>
                             </div>
                         </div>
@@ -46,7 +46,7 @@ const Security = () => {
                                     <span className="material-symbols-outlined text-primary-fixed text-5xl">shield_with_heart</span>
                                     <div className="absolute inset-0 rounded-full border-2 border-primary-fixed animate-ping opacity-20"></div>
                                 </div>
-                                <h3 className="text-2xl font-bold text-white mb-2">Protocolo Habita Vault</h3>
+                                <h3 className="text-2xl font-bold text-white mb-2">Protocolo Vinality Vault</h3>
                                 <p className="text-secondary text-sm mb-6 max-w-xs">Transparencia absoluta en cada transacción y resguardo inmutable de los documentos de obra.</p>
                             </div>
                         </div>

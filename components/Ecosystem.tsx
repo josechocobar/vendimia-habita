@@ -5,7 +5,7 @@ const Ecosystem = () => {
         <section className="py-24 px-6 bg-surface" id="plataforma">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16">
-                    <span className="text-primary-fixed font-label text-sm tracking-widest uppercase mb-4 block">Ecosistema Habita</span>
+                    <span className="text-primary-fixed font-label text-sm tracking-widest uppercase mb-4 block">Ecosistema Vinality</span>
                     <h2 className="font-headline font-bold text-4xl text-white mb-6">Una Red Totalmente Integrada</h2>
                     <p className="text-secondary max-w-2xl mx-auto">Conectamos propietarios, arquitectos, constructoras y proveedores en una sola plataforma, con la IA orquestando el flujo de información y los pagos.</p>
                 </div>

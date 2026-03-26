@@ -4,8 +4,8 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "HABITA | Inteligencia Arquitectónica",
-  description: "Tu Proyecto, Perfectamente Orquestado. Elimine el caos de la construcción de alta gama.",
+  title: "Vinality | Inteligencia Vinícola",
+  description: "Tu obra, sin sorpresas. Ordená tu proyecto con IA y contratos inteligentes.",
 };
 
 export default function RootLayout({

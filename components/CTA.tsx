@@ -21,7 +21,7 @@ const CTA = () => {
                     </span>
                     Cupos Limitados • Acceso Prioritario
                 </div>
-                <h2 className="font-headline font-extrabold text-4xl md:text-6xl mb-8">Construye tu legado con Habita</h2>
+                <h2 className="font-headline font-extrabold text-4xl md:text-6xl mb-8">Construye tu legado con Vinality</h2>
                 <p className="text-on-primary-fixed/80 text-lg mb-12 max-w-xl mx-auto">Únete a la lista de espera exclusiva para la plataforma que está redefiniendo cómo el mundo construye. Lanzamiento de cohortes limitadas en el Q4 2026.</p>
                 <div className="bg-on-primary-fixed/5 backdrop-blur-sm p-8 rounded-3xl border border-on-primary-fixed/20 max-w-2xl mx-auto">
                     <div className="grid grid-cols-3 gap-4 mb-10">
