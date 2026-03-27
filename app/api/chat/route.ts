@@ -1,0 +1,61 @@
+import { NextResponse } from 'next/server';
+import { SessionsClient } from '@google-cloud/dialogflow';
+
+export async function POST(request: Request) {
+    try {
+        const { message, sessionId } = await request.json();
+
+        if (!message) {
+            return NextResponse.json({ error: 'Message is required' }, { status: 400 });
+        }
+
+        const projectId = process.env.DIALOGFLOW_PROJECT_ID;
+        const clientEmail = process.env.DIALOGFLOW_CLIENT_EMAIL;
+        const privateKey = process.env.DIALOGFLOW_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+        if (!projectId || !clientEmail || !privateKey) {
+            console.error('Missing Dialogflow environment variables');
+            return NextResponse.json({
+                fulfillmentText: "El asistente no está configurado correctamente. Por favor, completa las credenciales en .env.local."
+            });
+        }
+
+        // Return informational message when using placeholder credentials
+        if (projectId === 'your-project-id') {
+            return NextResponse.json({
+                fulfillmentText: "Conexión con Dialogflow detectada. Configura tus credenciales reales en .env.local para activar las respuestas dinámicas de tu agente."
+            });
+        }
+
+        const sessionClient = new SessionsClient({
+            credentials: { client_email: clientEmail, private_key: privateKey },
+            projectId,
+        });
+
+        const sessionPath = sessionClient.projectAgentSessionPath(
+            projectId,
+            sessionId || 'default-session'
+        );
+
+        const dialogflowRequest = {
+            session: sessionPath,
+            queryInput: {
+                text: {
+                    text: message,
+                    languageCode: 'es-ES',
+                },
+            },
+        };
+
+        const [response] = await sessionClient.detectIntent(dialogflowRequest);
+        const result = response.queryResult;
+
+        return NextResponse.json({
+            fulfillmentText: result?.fulfillmentText || "No entendí eso, ¿puedes repetirlo?"
+        });
+
+    } catch (error) {
+        console.error('Dialogflow API Error:', error);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    }
+}
