@@ -11,12 +11,24 @@ export async function POST(request: Request) {
 
         const projectId = process.env.DIALOGFLOW_PROJECT_ID;
         const clientEmail = process.env.DIALOGFLOW_CLIENT_EMAIL;
-        const privateKey = process.env.DIALOGFLOW_PRIVATE_KEY?.replace(/\\n/g, '\n');
+        let privateKey = process.env.DIALOGFLOW_PRIVATE_KEY;
+
+        if (privateKey) {
+            // Remove potential quotes and handle both escaped (\n) and literal newlines
+            privateKey = privateKey.trim().replace(/^["']|["']$/g, '');
+            privateKey = privateKey.replace(/\\n/g, '\n');
+        }
 
         if (!projectId || !clientEmail || !privateKey) {
             console.error('Missing Dialogflow environment variables');
             return NextResponse.json({
                 fulfillmentText: "El asistente no está configurado correctamente. Por favor, completa las credenciales en .env.local."
+            });
+        }
+
+        if (!privateKey.startsWith('-----BEGIN PRIVATE KEY-----')) {
+            return NextResponse.json({
+                fulfillmentText: "Error: El formato de la Private Key es incorrecto. Debe comenzar con '-----BEGIN PRIVATE KEY-----'."
             });
         }
 
