@@ -54,8 +54,24 @@ export async function POST(request: Request) {
             fulfillmentText: result?.fulfillmentText || "No entendí eso, ¿puedes repetirlo?"
         });
 
-    } catch (error) {
-        console.error('Dialogflow API Error:', error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    } catch (error: any) {
+        console.error('Dialogflow API Error Detail:', error);
+
+        // Check for specific Dialogflow errors to return meaningful messages
+        let errorMessage = "Ocurrió un error interno en el servidor.";
+        if (error.code === 7 || error.message?.includes('permission')) {
+            errorMessage = "Error de permisos en Dialogflow. Revisa tu Client Email y Private Key.";
+        } else if (error.code === 5 || error.message?.includes('not found')) {
+            errorMessage = "No se encontró el proyecto. Revisa tu Project ID.";
+        } else if (error.message?.includes('invalid')) {
+            errorMessage = "La Private Key tiene un formato inválido. Asegúrate de que empiece con '-----BEGIN PRIVATE KEY-----'.";
+        } else if (error.message?.includes('Cannot find module')) {
+            errorMessage = "No se encontró el SDK de Dialogflow. Asegúrate de haber instalado '@google-cloud/dialogflow'.";
+        }
+
+        return NextResponse.json({
+            fulfillmentText: `Error: ${errorMessage}`,
+            error: error.message
+        }, { status: 500 });
     }
 }
